@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica Avanzada: Textos y Condicionales</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f7f6;
+        }
+        h1, h2 { color: #2c3e50; }
+        .texto-box {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            border-left: 5px solid #3498db;
+        }
+        .texto-title {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: #2980b9;
+        }
+        input[type="text"] {
+            padding: 6px 10px;
+            font-size: 1em;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            width: 160px;
+            margin: 0 5px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #e74c3c;
+        }
+        button {
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto;
+            transition: background-color 0.3s;
+        }
+        button:hover { background-color: #c0392b; }
+        .feedback {
+            display: none;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 4px;
+            font-size: 0.95em;
+            background-color: #fdfefe;
+            border: 1px solid #eee;
+        }
+        .correct { border-color: #27ae60; background-color: #eafaf1; color: #1e8449; }
+        .incorrect { border-color: #e74c3c; background-color: #fdedec; color: #c0392b; }
+        
+        /* 悬浮键盘 */
+        .keyboard {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        .keyboard-title { font-size: 0.85em; color: #7f8c8d; margin-bottom: 8px; text-align: center; }
+        .key {
+            display: inline-block;
+            padding: 10px 15px;
+            margin: 3px;
+            background: #ecf0f1;
+            border: 1px solid #bdc3c7;
+            border-radius: 4px;
+            cursor: pointer;
+            user-select: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: background 0.2s;
+        }
+        .key:hover { background: #d5dbdb; }
+    </style>
+</head>
+<body>
+
+    <h1>Evaluación 2: El Subjuntivo en Textos y Condicionales</h1>
+    <p>Lee cuidadosamente el contexto. ¡Atención especial a los tiempos compuestos! Recuerda cuál es el verbo auxiliar correcto.</p>
+
+    <!-- Texto 1 -->
+    <div class="texto-box" id="texto1">
+        <div class="texto-title">Texto 1: Un correo de trabajo (Enfoque: Presente y Pretérito Perfecto)</div>
+        <p>
+            Estimado equipo:<br><br>
+            Os escribo porque dudo mucho que los proveedores ya 
+            <strong>1. (hacer)</strong> <input type="text" id="q1" data-answer="hayan hecho"> 
+            el envío de los materiales. Les dimos el aviso ayer, pero es imposible que lo 
+            <strong>2. (preparar)</strong> <input type="text" id="q2" data-answer="hayan preparado"> 
+            tan rápido.<br>
+            Espero que vosotros 
+            <strong>3. (poder)</strong> <input type="text" id="q3" data-answer="podáis"> 
+            llamarles esta tarde para confirmarlo. No quiero que nosotros 
+            <strong>4. (tener)</strong> <input type="text" id="q4" data-answer="tengamos"> 
+            problemas con el cliente mañana por este retraso.
+        </p>
+        <div class="feedback" id="fb-q1"><strong>1: hayan hecho.</strong> Duda en presente (dudo) sobre una acción que debería estar terminada ahora (ya...). Perfecto de subjuntivo. ¡Ojo, el auxiliar es HABER, no hacer!</div>
+        <div class="feedback" id="fb-q2"><strong>2: hayan preparado.</strong> Igual que el anterior, "es imposible" (presente) que la acción ya esté completada. Perfecto de subjuntivo.</div>
+        <div class="feedback" id="fb-q3"><strong>3: podáis.</strong> Esperanza presente (espero) hacia una acción futura (esta tarde). Presente de subjuntivo.</div>
+        <div class="feedback" id="fb-q4"><strong>4: tengamos.</strong> Deseo presente (no quiero) hacia una consecuencia futura (mañana). Presente de subjuntivo.</div>
+    </div>
+
+    <!-- Texto 2 -->
+    <div class="texto-box" id="texto2">
+        <div class="texto-title">Texto 2: Recordando un viaje desastroso (Enfoque: Imperfecto y Pluscuamperfecto)</div>
+        <p>
+            El verano pasado fuimos a la montaña. Me dio muchísima rabia que el guía nos 
+            <strong>5. (perder)</strong> <input type="text" id="q5" data-answer="perdiera|perdiese"> 
+            en medio del bosque el primer día. <br>
+            La verdad, si nosotros 
+            <strong>6. (saber)</strong> <input type="text" id="q6" data-answer="hubiéramos sabido|hubiésemos sabido"> 
+            que él no tenía experiencia, jamás habríamos contratado sus servicios. <br>
+            Fue una suerte que otro grupo nos 
+            <strong>7. (encontrar)</strong> <input type="text" id="q7" data-answer="encontrara|encontrase"> 
+            antes del anochecer. Me molestó bastante que, al volver al hotel, el director no nos 
+            <strong>8. (pedir)</strong> <input type="text" id="q8" data-answer="pidiera|pidiese"> 
+            perdón en ningún momento.
+        </p>
+        <div class="feedback" id="fb-q5"><strong>5: perdiera / perdiese.</strong> Sentimiento en pasado (dio rabia) sobre una acción en el mismo escenario pasado. Imperfecto.</div>
+        <div class="feedback" id="fb-q6"><strong>6: hubiéramos / hubiésemos sabido.</strong> Oración condicional con 'Si'. Condición irreal en el pasado (el verano pasado). Pluscuamperfecto de subjuntivo. ¡El auxiliar es haber (hubiéramos), nunca hacer (hiciéramos)!</div>
+        <div class="feedback" id="fb-q7"><strong>7: encontrara / encontrase.</strong> Valoración en pasado (Fue una suerte) sobre una acción pasada. Imperfecto.</div>
+        <div class="feedback" id="fb-q8"><strong>8: pidiera / pidiese.</strong> Sentimiento pasado (molestó) sobre una acción paralela (no pedir perdón). Imperfecto. (Recuerda: pedir -> pidieron -> pidiera).</div>
+    </div>
+
+    <!-- Texto 3 -->
+    <div class="texto-box" id="texto3">
+        <div class="texto-title">Texto 3: Situaciones hipotéticas (Enfoque: Condicionales con 'Si')</div>
+        <p>
+            A veces pienso en cambiar de vida. Si yo 
+            <strong>9. (ser)</strong> <input type="text" id="q9" data-answer="fuera|fuese"> 
+            millonaria ahora mismo, dejaría mi trabajo y viajaría por todo el mundo.<br>
+            Sin embargo, si se lo dijera a mis padres, no creo que ellos me 
+            <strong>10. (apoyar)</strong> <input type="text" id="q10" data-answer="apoyaran|apoyasen">.<br>
+            Ayer hablé con mi amiga sobre esto. Si ella me 
+            <strong>11. (dar)</strong> <input type="text" id="q11" data-answer="hubiera dado|hubiese dado"> 
+            un buen consejo en ese momento, me habría sentido mucho mejor, pero solo me dijo que estaba loca.
+        </p>
+        <div class="feedback" id="fb-q9"><strong>9: fuera / fuese.</strong> Condición irreal en el presente (ahora mismo). Imperfecto de subjuntivo + Condicional simple.</div>
+        <div class="feedback" id="fb-q10"><strong>10: apoyaran / apoyasen.</strong> Depende del condicional "si se lo dijera", estamos en la hipótesis. Duda (no creo que) sobre una hipótesis irreal. Imperfecto de subjuntivo.</div>
+        <div class="feedback" id="fb-q11"><strong>11: hubiera / hubiese dado.</strong> Condición irreal en el pasado (Ayer). Pluscuamperfecto de subjuntivo.</div>
+    </div>
+
+    <button onclick="checkAnswers()">Evaluar mis respuestas</button>
+
+    <!-- Teclado flotante -->
+    <div class="keyboard">
+        <div class="keyboard-title">Tildes (Haz clic para insertar)</div>
+        <div class="key" onclick="insertChar('á')">á</div>
+        <div class="key" onclick="insertChar('é')">é</div>
+        <div class="key" onclick="insertChar('í')">í</div>
+        <div class="key" onclick="insertChar('ó')">ó</div>
+        <div class="key" onclick="insertChar('ú')">ú</div>
+        <div class="key" onclick="insertChar('ñ')">ñ</div>
+    </div>
+
+    <script>
+        let lastFocusedInput = null;
+        
+        document.querySelectorAll('input[type="text"]').forEach(input => {
+            input.addEventListener('focus', function() {
+                lastFocusedInput = this;
+            });
+        });
+
+        function insertChar(char) {
+            if (lastFocusedInput) {
+                const start = lastFocusedInput.selectionStart;
+                const end = lastFocusedInput.selectionEnd;
+                const text = lastFocusedInput.value;
+                lastFocusedInput.value = text.substring(0, start) + char + text.substring(end);
+                lastFocusedInput.focus();
+                lastFocusedInput.selectionStart = lastFocusedInput.selectionEnd = start + 1;
+            }
+        }
+
+        function checkAnswers() {
+            let correctCount = 0;
+            const totalQuestions = 11;
+
+            for (let i = 1; i <= totalQuestions; i++) {
+                const input = document.getElementById('q' + i);
+                const feedback = document.getElementById('fb-q' + i);
+                
+                const userAnswer = input.value.trim().toLowerCase(); 
+                const correctAnswers = input.getAttribute('data-answer').split('|');
+                
+                feedback.style.display = 'block';
+                input.classList.remove('correct', 'incorrect');
+
+                if (correctAnswers.includes(userAnswer)) {
+                    input.classList.add('correct');
+                    feedback.className = 'feedback correct';
+                    feedback.innerHTML = "<strong>¡Correcto!</strong> " + feedback.innerHTML.replace("<strong>Incorrecto.</strong> ", "");
+                    correctCount++;
+                } else {
+                    input.classList.add('incorrect');
+                    feedback.className = 'feedback incorrect';
+                    // Conservar la explicación original y añadir la respuesta del usuario
+                    const originalText = feedback.innerHTML.split('</div>')[0].replace(/<strong>(Incorrecto|¡Correcto!).*?<\/strong>/g, '');
+                    feedback.innerHTML = "<strong>Incorrecto.</strong> Tu respuesta: <em>" + (userAnswer || "(vacío)") + "</em>. <br>" + originalText;
+                }
+            }
+
+            setTimeout(() => {
+                alert(`¡Evaluación terminada!\nHas acertado ${correctCount} de ${totalQuestions} preguntas.`);
+            }, 100);
+        }
+    </script>
+</body>
+</html>
